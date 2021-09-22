@@ -27,7 +27,7 @@ $coPassword = Read-Host -asSecureString "Enter your current password"
 $cnPassword = Read-Host -asSecureString "Enter your new password"
 ```
 
-The next section is only for your reference. We have a lot of domains and domain controllers, it's useful to have a reference as to what DC I'm referencing to change my password.
+The next section is only for your reference. We have a lot of domains and domain controllers, it's useful to have a reference as to what Domain and DC I'm referencing to change my password.
 
 ```powershell
 <# 
@@ -45,7 +45,7 @@ DOMAINE        10.10.50.2      dc05.domaine.com
 #>
 ```
 
-If you have ever worked with hash tables, you know that items in the table are retrieved in random order. Now that's not a problem here, but I chose to store data the NetBIOS and DC names in an ordered dictionary so that passwords are changed in a predictable order. The Key is my NetBIOS domain name and is added as a prefix to my username. The Value is the fqdn of a domain controller I will contact for changing my password.  
+If you've worked with hash tables, you know that items in the table are retrieved in random order. Now that's not a problem here, but I chose to store data in an ordered dictionary so that passwords are changed across domains in a predictable order. The Key is your NetBIOS domain name and will be added as a prefix to your username. The Value is the fqdn of a domain controller that will be contact for changing your password.  
 
 Update this list to refence your infrastructure.
 
@@ -61,7 +61,7 @@ $domainList = [ordered]@{
 }
 ```
 
-Now it's time to change my password across all domains, writting output to the screen. You will see what domain password has changed and what if any changes have failed.
+Now it's time to change your password across all domains, writting output to the screen. You will see what domain password has changed and what if any changes have failed. My suggestion would be to start by testing the script with one domain, then two, then go for it.
 
 ```powershell
 
